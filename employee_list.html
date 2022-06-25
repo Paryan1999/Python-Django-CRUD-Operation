@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1 class="display-4 font-italic" ><i class="fa fa-users"></i>Employee List</h1>
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Full Name</td>
+            <td>Mobile</td>
+            <td>Employee_id</td>
+            <td>Email_id</td>
+            
+            <td>Position</td>
+            <td>
+                <a href="{% url 'employee_insert' %}" class="btn btn-outline-success">
+                    <i class="fa fa-plus"></i>Add New 
+                </a>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in context %}
+            <tr>
+                <td>{{employee.full_name}}</td>
+                <td>{{employee.mobile}}</td>
+                <td>{{employee.employee_id}}</td>
+                <td>{{employee.email_id}}</td>
+                <td>{{employee.position}}</td>
+                <td>
+                    <a href="{% url 'employee_update' employee.id %}" class="btn btn-primary "><i class="fa fa-edit "></i>Edit</a>
+                        
+                    <form action="{% url 'employee_delete' employee.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right">Delete</i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
