@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<h1 class="display-4 font-italic" ><i class="fa fa-user-plus"></i>Employee Register</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+
+<div class='row'>
+<div class="col-md-7">
+    {{ form.full_name | as_crispy_field}}
+</div>
+<div class="col-md-5">
+    {{ form.mobile|as_crispy_field }}
+</div>
+
+</div>
+
+<div class='row'>
+<div class="col-md-7">
+    {{ form.employee_id|as_crispy_field }}
+</div>
+<div class="col-md-5">
+    {{ form.email_id|as_crispy_field }}
+</div>
+
+    <div class="col-md-5">
+    {{ form.position|as_crispy_field }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-7">
+    <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-database"></i> SUBMIT</button>
+    </div>
+    <div class="col-md-5">
+    <a href="{% url 'employee_list' %}" class="btn btn-secondary btn-lg btn-block"><i class="fa fa-backward"></i> Back To List</a>
+    </div>
+    
+</div>
+    </forms>
+{% endblock %}
